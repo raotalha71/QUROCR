@@ -1,0 +1,58 @@
+{
+  "lora_hyperparameters": {
+    "base_model": "Qwen3.5-35B-A3B",
+    "base_model_architecture": "Mixture-of-Experts (MoE)",
+    "total_parameters": "35B",
+    "active_parameters": "3B",
+    "routed_experts": 256,
+    "active_experts_per_token": 8,
+    "shared_experts": 1,
+    "training_platform": "Alibaba Cloud Model Studio MaaS",
+    "peft_type": "LORA",
+    "lora_rank_r": 16,
+    "lora_alpha": 32,
+    "scaling_factor_alpha_div_r": 2.0,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "trainable_parameters": 48600000,
+    "trainable_percentage": "0.14%",
+    "learning_rate": "2.0e-4",
+    "lr_scheduler": "Linear warmup with Cosine decay",
+    "warmup_ratio": 0.03,
+    "batch_size_effective": 16,
+    "epochs": 3,
+    "optimizer": "AdamW",
+    "optimizer_betas": [
+      0.9,
+      0.999
+    ],
+    "precision": "bfloat16",
+    "training_set_size": 3780,
+    "validation_set_size": 810,
+    "checkpoint_selection": "Minimized validation Character Error Rate (CER) on 810 validation images"
+  },
+  "inference_settings": {
+    "serving_platform": "Alibaba Cloud Model Studio MaaS (Standard Compatible Endpoint)",
+    "endpoint_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+    "model_name": "finetuned 35B A3B parameter",
+    "model_id": "qwen3.5-35b-a3b-urdu-ocr",
+    "thinking_mode": false,
+    "enable_thinking": false,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_output_tokens": 4096,
+    "image_resolution_limits": "Native dynamic patch resolution (max 2048 px)"
+  },
+  "dataset_split_alignment": {
+    "total_corpus_images": 5401,
+    "training_set": 3780,
+    "validation_set": 810,
+    "holdout_test_set": 811,
+    "audited_benchmark": 200
+  }
+}
